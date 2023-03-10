@@ -1,7 +1,7 @@
 Todos:
-[-] Create Live Chat app then NPM & GIt Init
+[+] Create Live Chat app then NPM & GIt Init
 
-[-] Create a npm project and install dependancies. express, moment, nodemon
+[+] Create a npm project and install dependancies. express, moment,esm, socket.io, nodemon
 
 [-] create folders and files all we need. public, js, css, index, img
 
