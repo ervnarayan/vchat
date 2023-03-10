@@ -3,7 +3,9 @@ Todos:
 
 [+] Create a npm project and install dependancies. express, moment,esm, socket.io, nodemon
 
-[-] create folders and files all we need. public, js, css, index, img
+[+] create folders and files all we need. public, js, css, index, images
+
+[+] create dotenv environment.
 
 [-] Setup express server server.js
 

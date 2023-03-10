@@ -4,8 +4,8 @@
   "description": "Live Chat application by using socket.io package",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon esm -r app",
-    "start": "node esm -r app"
+    "dev": "nodemon -r esm app.js",
+    "start": "node -r esm app.js"
   },
   "repository": {
     "type": "git",
