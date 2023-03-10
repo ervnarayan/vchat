@@ -1,5 +1,5 @@
 {
-  "name": "live-chat",
+  "name": "vchat",
   "version": "1.0.0",
   "description": "Live Chat application by using socket.io package",
   "main": "index.js",

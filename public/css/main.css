@@ -1,0 +1,7 @@
+body{
+    height:100vh;
+    background-image: url('../images/bg1.jpg');
+    background-repeat: repeat;
+}
+.toast{clear:both;}
+.toast:nth-child(even){ float: right;}
