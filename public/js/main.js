@@ -1,21 +1,28 @@
 let username;
+let socket = io();
 
-do{
-
-    username = prompt('Enter username..')
-
-}while(!username);
-
-
-// Create chat card
 const chatList = document.querySelector('#chatList');
 const textarea = document.querySelector('#chatTxt');
 const send = document.querySelector('#button-addon2');
+const user = document.querySelector('.username');
+
+do{
+ 
+    username = prompt('Enter username..')
+
+}while(!username){
+    user.innerHTML = `Hello, ${username}`;
+};
+
+
+// Create chat card
 
 
 
 
-textarea.addEventListener('keypress', (e) => {
+
+
+textarea.addEventListener('keyup', (e) => {
     if(e.key === 'Enter'){
         e.preventDefault();
         let chatTxt = textarea.value;
@@ -25,7 +32,8 @@ textarea.addEventListener('keypress', (e) => {
         postChat(chatTxt);
         textarea.value='';
     }
-
+    socket.emit('typing', {username});
+    scrollToBottom();
 });
 
 send.addEventListener('click', (e) => {
@@ -36,39 +44,75 @@ send.addEventListener('click', (e) => {
     }
     postChat(chatTxt);
     textarea.value='';
+    scrollToBottom();
 });
 
 
 function postChat(chatTxt){
-    
     const data = {
         username : username,
         chatTxt : chatTxt
     }
-
     // Add to DOM
-    addToDom(data);
-
+    addToDom(data, 'outgoing');
     // Broadcast MSG
-
+    broadcastChat(data);
     // Insert to database
 }
 
 
-function addToDom(data){
+function addToDom(data, sender){
     let toast = document.createElement('div');
-    toast.classList.add('toast', 'show', 'mb-4');
+    toast.classList.add('toast', 'show', 'mb-4', sender);
     let renderTxt = `
                 <div class="toast-header">
                 <strong class="me-auto">${data.username}</strong>
                 <small>${moment(data.time).format('LT')}</small>
-                <button type="button" class="btn-close ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true"></span>
-                </button>
+                
                 </div>
                 <div class="toast-body">${data.chatTxt}</div>
     `;
 
     toast.innerHTML = renderTxt;
-    chatList.prepend(toast);
+    chatList.append(toast);
+}
+
+function broadcastChat(data){
+    // Socket
+    socket.emit('chat', data);
+}
+
+
+
+socket.on('chat', (data)=>{
+    addToDom(data, 'incoming');
+    scrollToBottom();
+});
+
+
+let typingDiv = document.querySelector('.typing');
+
+let timerId = null;
+
+function debounce(func, timer){
+    if(timerId){
+        clearTimeout(timerId);
+    }
+
+    timerId = setTimeout(()=>{
+        func();
+    },timer);
+}
+
+socket.on('typing', (data)=>{
+    typingDiv.innerHTML = `${data.username} is Typing ....`;
+    debounce(function() {
+        typingDiv.innerHTML = '';        
+    }, 1000);
+});
+
+
+
+function scrollToBottom(){
+    chatList.scrollTop = chatList.scrollHeight;
 }

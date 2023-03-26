@@ -1,7 +1,30 @@
-body{
-    height:100vh;
-    background-image: url('../images/bg1.jpg');
-    background-repeat: repeat;
+body{height:85vh;background-image: url('../images/bg1.jpg');background-repeat: repeat;scroll-behavior: smooth;overflow-y: hidden;}
+.vchat{max-width: 90%; margin:auto;}
+.navbar-brand{color: #1ebfd9;font-size: 30px;}
+.navbar-expand-lg .navbar-nav .nav-link {color: #d18900;font-weight: 100;}
+.navbar.fixed-top {border-width: 0 0 1px;border-radius: 0;padding: 5px 0;border-color: #ddd;opacity: 0.85;}
+.bi-person-bounding-box{font-size: 25px;margin-right: 10px;color: #333333;}
+.toast{clear:both;position: relative;animation: toast_animation 0.5s 1;animation-timing-function: linear;border: 0;border-radius: 0;}
+.toast-header{background: #f9f9f9;border-radius: 0;border-bottom: 0;padding: 3px 12px;font-weight: 100;color: #d19d00;}
+.toast-body{font-weight: 100;}
+
+/*.toast:nth-child(even){ float: right; display: block;}*/
+#chatList{height: 72vh;overflow-y: auto;display: flex;flex-direction: column;animation-timing-function: linear;padding: 0 25px;}
+.typing{letter-spacing:1px; font-size: 13px;}
+.incoming{background:darkturquoise;}
+.outgoing{margin-left:auto; background: #ffffff}
+.incoming .toast-body{color:#ffffff;}
+.form-group input{font-weight:100; border: 1px solid #ddd;}
+.form-group input:focus, .form-group input:blur{outline: none;}
+.input-group .btn{background: darkturquoise; border: 1px solid darkturquoise;}
+
+@keyframes toast_animation {
+    from {top: -25px;opacity: 0;}
+    to {top: 0px; opacity: 1;}
 }
-.toast{clear:both;}
-.toast:nth-child(even){ float: right;}
+
+@media only screen and (max-width: 600px) {
+    .vchat{max-width: 100%; margin:auto;}
+    .navbar-brand {font-size: 25px;}
+    .navbar.fixed-top {padding:0}
+}
