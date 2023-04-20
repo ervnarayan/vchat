@@ -7,9 +7,7 @@ const send = document.querySelector('#button-addon2');
 const user = document.querySelector('.username');
 
 do{
- 
-    username = prompt('Enter username..')
-
+    username = prompt('Enter Your Name..')
 }while(!username){
     user.innerHTML = `Hello, ${username}`;
 };
