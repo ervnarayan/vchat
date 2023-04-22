@@ -1,8 +1,9 @@
 import express from 'express';
 import {APP_PORT } from './config';
 import  io  from 'socket.io';
+import dbConnect from './db';
 
-
+dbConnect();
 
 const app  = express();
 app.use(express.static('public'));

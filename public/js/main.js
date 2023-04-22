@@ -16,10 +16,6 @@ do{
 // Create chat card
 
 
-
-
-
-
 textarea.addEventListener('keyup', (e) => {
     if(e.key === 'Enter'){
         e.preventDefault();
@@ -45,7 +41,6 @@ send.addEventListener('click', (e) => {
     scrollToBottom();
 });
 
-
 function postChat(chatTxt){
     const data = {
         username : username,
@@ -57,7 +52,6 @@ function postChat(chatTxt){
     broadcastChat(data);
     // Insert to database
 }
-
 
 function addToDom(data, sender){
     let toast = document.createElement('div');
@@ -80,13 +74,10 @@ function broadcastChat(data){
     socket.emit('chat', data);
 }
 
-
-
 socket.on('chat', (data)=>{
     addToDom(data, 'incoming');
     scrollToBottom();
 });
-
 
 let typingDiv = document.querySelector('.typing');
 
@@ -108,8 +99,6 @@ socket.on('typing', (data)=>{
         typingDiv.innerHTML = '';        
     }, 1000);
 });
-
-
 
 function scrollToBottom(){
     chatList.scrollTop = chatList.scrollHeight;
