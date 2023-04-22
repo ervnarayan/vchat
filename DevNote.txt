@@ -11,17 +11,17 @@ Todos:
 
 [+] do fontend part html and css
 
-[-] Post comment logic ,append to dom, install socket.io, emit event from client
+[+] Post comment logic ,append to dom, install socket.io, emit event from client
 
-[-] Listen and broadcast event from server 
+[+] Listen and broadcast event from server 
 
-[-] Listen for incoming events on client
+[+] Listen for incoming events on client
 
-[-] Append comments animation
+[+] Append comments animation
 
-[-] Typing... animation 
+[+] Typing... animation 
 
-[-] Sync with db: connect to Mongo DB, install mongoose, create model
+[+] Sync with db: connect to Mongo DB, install mongoose, create model
 
 [-] Create routes and db logic
 

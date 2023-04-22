@@ -15,7 +15,6 @@ do{
 
 // Create chat card
 
-
 textarea.addEventListener('keyup', (e) => {
     if(e.key === 'Enter'){
         e.preventDefault();
@@ -48,9 +47,12 @@ function postChat(chatTxt){
     }
     // Add to DOM
     addToDom(data, 'outgoing');
+
     // Broadcast MSG
     broadcastChat(data);
+
     // Insert to database
+    snycDB(data);
 }
 
 function addToDom(data, sender){
@@ -72,6 +74,18 @@ function addToDom(data, sender){
 function broadcastChat(data){
     // Socket
     socket.emit('chat', data);
+}
+
+// SYNC with database
+function snycDB(data){
+    const headers = {
+        'Content-Type': 'application/json'
+    }
+    fetch('/api/chat', {method: 'POST', body: JSON.stringify(data), headers})
+    .then(response => response.json())
+    .then(result => {
+        console.log(result);
+    })
 }
 
 socket.on('chat', (data)=>{
