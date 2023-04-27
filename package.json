@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon -r esm app.js",
+    "deploy": "nodemon -r esm app.js",
     "serve": "node -r esm app.js"
   },
   "repository": {
