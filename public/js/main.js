@@ -61,7 +61,7 @@ function addToDom(data, sender){
     let renderTxt = `
                 <div class="toast-header">
                 <strong class="me-auto">${data.username}</strong>
-                <small>${moment(data.time).format('LT')}</small>
+                <small>${moment(data.time).format('LLL')}</small>
                 
                 </div>
                 <div class="toast-body">${data.chatTxt}</div>
@@ -117,3 +117,16 @@ socket.on('typing', (data)=>{
 function scrollToBottom(){
     chatList.scrollTop = chatList.scrollHeight;
 }
+
+function fetchChats(){
+    fetch('/api/chat')
+    .then(res => res.json())
+    .then(result =>{
+        console.log(result);
+        result.forEach((data)=>{
+            data.time = data.createdAt;
+            addToDom(data, 'incoming')
+        });
+    })
+}
+window.onload = fetchChats;

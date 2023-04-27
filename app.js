@@ -2,19 +2,16 @@ import express from 'express';
 import {APP_PORT } from './config';
 import  io  from 'socket.io';
 import dbConnect from './db';
-
 import { chatModel } from './models/chat';
 
 dbConnect();
 
 const app  = express();
 app.use(express.static('public'));
-
 app.use(express.json());
 
 
 // API CALLS
-
 app.post('/api/chat', (req, res)=>{
     const chat = new chatModel({
         username: req.body.username,
@@ -25,6 +22,11 @@ app.post('/api/chat', (req, res)=>{
     });
 });
 
+app.get('/api/chat', (req, res)=>{
+    chatModel.find().then((result)=>{
+        res.send(result);
+    })
+})
 
 
 
